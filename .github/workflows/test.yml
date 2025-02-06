@@ -1,4 +1,4 @@
-name: Run Wassim docker X python
+name: Run FizzBuzz Tests with unittest
 
 on:
   push:
@@ -8,8 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test_python:
-    name: Run Python Tests
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,20 +22,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install coverage flake8 pdoc
+          pip install coverage flake8
           pip install -r requirements.txt
 
       - name: Run unit tests with coverage
         run: |
           coverage run -m unittest discover tests
           coverage report -m
-          coverage xml  # Génère un rapport XML pour publication
+          coverage xml  # Génère un fichier XML pour publication
 
       - name: Run Flake8 for code quality
-        run: flake8 main.py tests/test_main.py
-
-      - name: Generate documentation
-        run: pdoc --html --output-dir docs main.py
+        run: flake8 main.py tests/testmain.py
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -49,23 +45,3 @@ jobs:
         with:
           name: documentation
           path: docs/
-
-  test_docker:
-    name: Run Tests Inside Docker
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Docker
-        run: |
-          docker --version
-
-      - name: Build Docker image
-        run: |
-          docker build -t fizzbuzz-app .
-
-      - name: Run tests inside Docker
-        run: |
-          docker run --rm fizzbuzz-app python -m unittest discover tests
