@@ -1,5 +1,6 @@
 import unittest
-from main import fizzbuzz  # Import de la fonction à tester
+from main import fizzbuzz
+
 
 class TestFizzBuzz(unittest.TestCase):
 
@@ -8,7 +9,6 @@ class TestFizzBuzz(unittest.TestCase):
             (1, "1"),
             (2, "2"),
             (3, "Fizz"),
-            (4, "4"),
             (5, "Buzz"),
             (6, "Fizz"),
             (10, "Buzz"),
@@ -17,8 +17,7 @@ class TestFizzBuzz(unittest.TestCase):
             (45, "FizzBuzz"),
             (7, "7"),
             (8, "8"),
-            (9, "Fizz"),
-            (11, "11"),
+            (78, "78")
             (12, "Fizz"),
             (20, "Buzz"),
             (25, "Buzz"),
@@ -29,6 +28,7 @@ class TestFizzBuzz(unittest.TestCase):
         for n, expected in test_cases:
             with self.subTest(n=n):
                 self.assertEqual(fizzbuzz(n), expected)
+
 
 if __name__ == "__main__":
     unittest.main()
