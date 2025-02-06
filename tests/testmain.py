@@ -17,7 +17,7 @@ class TestFizzBuzz(unittest.TestCase):
             (45, "FizzBuzz"),
             (7, "7"),
             (8, "8"),
-            (78, "78")
+            (78, "78"),
             (12, "Fizz"),
             (20, "Buzz"),
             (25, "Buzz"),
