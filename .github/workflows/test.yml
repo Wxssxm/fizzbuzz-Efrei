@@ -32,7 +32,7 @@ jobs:
           coverage xml  # Génère un fichier XML pour publication
 
       - name: Run Flake8 for code quality
-        run: flake8 main.py tests/test_main.py
+        run: flake8 main.py tests/testmain.py
 
       - name: Generate documentation
         run: pdoc --html --output-dir docs main.py
